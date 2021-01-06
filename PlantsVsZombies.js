@@ -98,7 +98,7 @@ $(function () {
         snapTolerance: 37.5,
         drag: function (event, ui) {
             if ($(ui.helper).hasClass('peashooter')) {
-                $(ui.helper).css("background-image", "url(./images/PShootMove2.gif)").css("background-color"," ");
+                $(ui.helper).css({"background-image": "url(./images/PShootMove2.gif)","background-color":"transparent"})
             } else if ($(ui.helper).hasClass('sunflower')) {
 
                 $(ui.helper).css("background-image", "url(./images/SunFlower.gif)")
@@ -115,7 +115,7 @@ $(function () {
             if (draggedClone.hasClass('peashooter') && getFunds() >= Peashooter.cost) {
                 enoughFunds = true;
                 changeFunds(-Peashooter.cost);
-                draggedClone.css("background-image", "url(./images/PShootMove2.gif)")
+                draggedClone.css({"background-image": "url(./images/PShootMove2.gif)","background-color":"transparent"});
                 pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position());
                 pShooters[pShooters.length - 1].Shoot();
             } else if (draggedClone.hasClass('sunflower') && getFunds() >= Sun.cost ) {
@@ -160,7 +160,7 @@ function Zombie(blood, walkSpeed, zombieStyle) {
     this.zombieStyle=zombieStyle;
     this.ZombieTimer;
     //Array of Zombies allowable top positions
-    this.AllowableZombieTop = ['95px', '172px', '249px', '326px', '403px', '480px', '557px']; //margintop+marginbottom+zombie height
+    this.AllowableZombieTop = ['120px', '197px', '274px', '351px', '428px', '505px', '582px']; //margintop+marginbottom+zombie height
     Zombie.ZombieCount++;
 }
 //var Zombie.ZombiesArr=[];
