@@ -30,9 +30,27 @@ div {
     margin: 1.25px;
     z-index: 0;
 }
+
+.zombie1{
+    
+    position: relative; 
+    width: 170px;
+    height: 170px;
+    border: solid green 10px;
+    background-image: url('./images/PeashooterHD.png');
+    background-size: 170px;
+    background-color:green;
+    display: inline-block;
+    margin:5px;
+    z-index: 0;
+}
+
+
+
 .peashooter{
         background-image: url('./images/PeashooterHD.png');
 }
+
 .sun {
     background-image: url('./images/SunHD.png');
 }
@@ -75,9 +93,11 @@ div {
     display: inline-block;
     z-index: -1;
 }
+
 .house {
     background-image: url('./images/2dcea2bef6d1f58ff0307455b1a48295.jpg');
 }
+
 .grass {
     background-image: url('./images/a4229a483cf76e0b5458450c2e591ff3.jpg');
 }
