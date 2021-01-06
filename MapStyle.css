@@ -1,142 +1,90 @@
-body {
-    /*    background-color: black;*/
-}
-
 div {
     margin: -2px;
+    margin-bottom: -1px;
+    margin-top: -1px;
 }
+
 #topbar {
-    width: 2000px;
-    height: 200px;
-    border: solid #813a1c 20px;
-    background-color:#ec9975;
-    /* margin-bottom: 100px;  */
+    width: 500px;
+    height: 50px;
+    border: solid #813a1c 5px;
+    background-color: #ec9975;
     z-index: -1;
 }
+
 #cost {
-    width: 2000px;
-    height: 100px;
-    /* border: solid #813a1c 3px; */
-    /* background-color:#ec9975; */
-    /* margin-top: 5px; */
-    margin-bottom: 100px;
-    margin-left: 15px;
-
+    width: 500px;
+    height: 25px;
+    margin-bottom: 5px;
+    margin-left: 3.5px;
     z-index: -1;
 }
 
-
-.peashooter {
-    
-    position: relative; 
-    width: 170px;
-    height: 170px;
-    border: solid green 10px;
-    background-image: url('./images/PeashooterHD.png');
-    background-size: 170px;
-    background-color:green;
+.peashooter,.sun,.sunflower {
+    width: 42.5px;
+    height: 42.5px;
+    border: solid green 2.5px;
+    background-size: 42.5px;
+    background-color: green;
     display: inline-block;
-    margin:5px;
+    margin: 1.25px;
     z-index: 0;
 }
-
+.peashooter{
+        background-image: url('./images/PeashooterHD.png');
+}
 .sun {
-    width: 170px;
-    height: 170px;
-     border: solid  green 10px; 
     background-image: url('./images/SunHD.png');
-    background-color:green;
-    background-size: 170px;
-    margin:5px;
-    display: inline-block;
-    z-index: 0;
-    /* margin:auto; */
-    /* z-index: 0; */
-
-    
-    
 }
 
-.peashooterActive1{
-
+.sunflower {
+    background-image: url('./images/SunflowerHD.png');
+    background-color: yellow;
+    border: solid yellow 2.5px;
+}
+.peashooterActive1 {
     position: absolute;
     left: 0px;
-    width: 100px;
-}
-.sunOuter{
-     width: 170px;
-    height: 170px;
-    border: solid brown 10px;
-    background-color:brown;
-    display: inline-block;
-     margin:5px; 
-    z-index: 0;
-
- 
+    width: 25px;
 }
 
 .score {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
     color: black;
-    /* margin: auto; */
-    font-size: 30pt;
-    width: 170px;
-    height: 70px;
+    font-size: 7.5pt;
+    width: 42.5px;
+    height: 17.5px;
     z-index: 0;
     display: inline-block;
-margin: 10px;
-    border: 2px solid rgb(224, 16, 16);
+    margin: 2.5px;
+    border: 0.5px solid rgb(224, 16, 16);
     background-color: #e8ec9c;
 }
-.sunflower {
-    width: 170px;
-    height: 170px;
-    border: solid yellow 10px;
-    background-image: url('./images/SunflowerHD.png');
-    background-size: 170px;
-    background-color:yellow;
-    margin:5px;
-    display: inline-block;
-    z-index: 0;
-}
+
 #Map {
-    width: 4600px;
-}
-.house {
-    width: 320px;
-    height: 200px;
-    background-image: url('./images/2dcea2bef6d1f58ff0307455b1a48295.jpg');
-    background-size: 200px;
+    width: 1075px;
     display: inline-block;
-/*    transform: skewx(-10deg);*/
-/*    transform: rotate(10deg);*/
-/*    transform-origin: 200%;*/
-    z-index: -1;
-}
-.grass {
-    width: 200px;
-    height: 200px;
-    background-image: url('./images/a4229a483cf76e0b5458450c2e591ff3.jpg');
-    background-size: 200px;
-    display: inline-block;
-/*    transform: skewx(-10deg);*/
-/*    transform: rotate(10deg);*/
-/*    transform-origin: 200%;*/
-    z-index: -1;
-}
-.Zombies {
-    width: 350px;
-    height: 200px;
-    background-image: url('./images/93d1632f36cb12816efcc4ef8f7fa608.jpg');
-    background-size: 200px;
-    display: inline-block;
-/*    transform: skewx(-10deg);*/
-/*    transform: rotate(10deg);*/
-/*    transform-origin: 200%;*/
-    z-index: -1;
 }
 
+.house,.grass,.Zombies {
+    width: 75px;
+    height: 75px;
+    background-image: url('./images/2dcea2bef6d1f58ff0307455b1a48295.jpg');
+    background-size: 75px;
+    display: inline-block;
+    z-index: -1;
+}
+.house {
+    background-image: url('./images/2dcea2bef6d1f58ff0307455b1a48295.jpg');
+}
+.grass {
+    background-image: url('./images/a4229a483cf76e0b5458450c2e591ff3.jpg');
+}
+
+.Zombies {
+    background-image: url('./images/93d1632f36cb12816efcc4ef8f7fa608.jpg');
+}
 
 .idh1 {
     font-family: 'Permanent Marker', cursive;
@@ -144,137 +92,40 @@ margin: 10px;
     color: red;
     margin-left: auto;
     margin-right: auto;
-    font-size: 50pt;
+    font-size: 12.5pt;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-#life {
-    margin-right: 10px;
-    width: 200px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.pacman {
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/xosf.gif');
-    background-size: 50px;
-    background-color: black;
+.ZombiesSoldier1,.ZombiesSoldier2,.ZombiesSoldier3,.ZombiesSoldier4,.ZombiesSoldier5 {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    background-size: 100% 100%;
     display: inline-block;
+    z-index: 2;
 }
 
-.wall {
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/wall.png');
-    display: inline-block;
+.ZombiesSoldier1 {
+    background-image: url('./images/Zombie1/0Zombie1.gif');
 }
-
-.coin {
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/coin2.jpg');
-    background-size: 50px;
-    display: inline-block;
+.ZombiesSoldier2 {
+    background-image: url('./images/Zombie2/0Zombie2.gif');
 }
-
-.empty {
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/black.jpg');
-    display: inline-block;
+.ZombiesSoldier3 {
+    background-image: url('./images/Zombie3/0Zombie3.gif');
 }
-
-.blinkymob {
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/blinky.png');
-    background-size: 50px;
-    background-color: black;
-    display: inline-block;
+.ZombiesSoldier4 {
+    background-image: url('./images/Zombie4/0Zombie4.gif');
 }
-
-.clydemob {
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/clyde.png');
-    background-size: 50px;
-    background-color: black;
-    display: inline-block;
-}
-
-.inkymob {
-
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/inky.png');
-    background-size: 50px;
-    background-color: black;
-    display: inline-block;
-}
-
-.chain {
-
-    width: 50px;
-    height: 50px;
-    background-image: url('./pic/chain.jpg');
-
-    background-size: 50px;
-    background-color: black;
-    display: inline-block;
-}
-
-.button {
-    background-color: #022072;
-    border: 1px;
-    border-radius: 10px;
-    color: white;
-    padding: 10px 20px;
-    width: 160px;
-    margin-top: 25%;
-    font-size: 16pt;
-}
-
-.span1 {
-    position: fixed;
-    right: 13%;
-    top: 27%;
+.ZombiesSoldier5 {
+    background-image: url('./images/Zombie5/0Zombie5.gif');
 }
 
 
 
-.span2 {
-    font-family: 'Permanent Marker', cursive;
-    text-align: center;
-    color: yellow;
-    margin-top: 7.5%;
-    width: 150px;
-    font-size: 22pt;
-}
 
-.livediv {
-    background-image: url('./pic/6.png');
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-    background-size: 50px;
-    margin-left: 10px;
-    margin-top: 40%;
 
-}
 
+/*/////////////////
 .outerDiv {
     width: 970px;
     display: flex;
@@ -305,4 +156,4 @@ margin: 10px;
     margin: auto;
     width: 95%;
     font-size: 30pt;
-}
+}*/
