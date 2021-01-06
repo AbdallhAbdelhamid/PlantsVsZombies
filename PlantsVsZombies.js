@@ -1,12 +1,13 @@
 var Funds = document.getElementById("score");
 
-function changeFunds (fundsIn){
+function changeFunds(fundsIn) {
     var fundsElem = document.getElementById("score");
-    fundsElem.innerText = Number.parseInt(fundsElem.innerText)+fundsIn; 
+    fundsElem.innerText = Number.parseInt(fundsElem.innerText) + fundsIn;
 }
-function getFunds (){
+
+function getFunds() {
     var fundsElem = document.getElementById("score");
-    return (Number.parseInt(fundsElem.innerText)); 
+    return (Number.parseInt(fundsElem.innerText));
 }
 
 var gridObjects = {
@@ -30,35 +31,92 @@ function drawGrid(gridArrIn) {
     }
 }
 
+var lane = { // refers to top position of each lane
+  LANE1:120,
+  LANE2:197,
+  LANE3:274,
+  LANE4:351,
+  LANE5:428,
+  LANE6:505,
+  LANE7:582
+};
 
-function Peashooter(peashotterDiv, position) {
+
+function getLane(position){
+    if(position < lane.LANE2 )
+        return lane.LANE1;
+    
+    if(position < lane.LANE3)
+        return lane.LANE2
+
+    if(position < lane.LANE4)
+        return lane.LANE3
+
+    if(position < lane.LANE5)
+        return lane.LANE4
+
+    if(position < lane.LANE6)
+        return lane.LANE5
+
+    if(position < lane.LANE7)
+        return lane.LANE6
+
+    else
+        return lane.LANE7
+    
+}
+
+function Peashooter(peashotterDiv, positionIn) {
     this.gridObject = peashotterDiv;
-
+    this.lane = getLane(positionIn.top);
     this.position = {
-        t: position.top,
-        l: position.left
+        t: positionIn.top,
+        l: positionIn.left
     };
     this.shootPic = "<img class='peashooterActive1' src='./images/PB00.gif' >";
+
     this.shootInterval;
-    this.Shoot = function () {
+    this.startShooting = function () {
         var that = this;
         this.shootInterval = setInterval(
             function () {
                 that.gridObject.append(that.shootPic); // add a shot
                 that.gridObject.children().last().css({
-                    left: 100
+                    left: 60,top:10 // match the output
                 });
-                $(that.gridObject).children().animate( // animate the shot
+                var deleted = 0; // flag for collision with monster
+                $(that.gridObject).children().last().animate(
                     {
-                        left: $("#Map").width() - that.position.l - $(".Zombies").width()
-                    }, // get end of map position
-                    2000, // shot speed ( projectile speed)
-                    function () {
-                        $(that.gridObject).children().eq(0).remove();
-                    }); // remove first shotted.
-            }, 1000); // shotting speed
+                        left: $("#Map").width() - that.position.l - $(".Zombies").width() // until end of map
+                    },
+                    {
+                        duration: 3000,
+                        complete: function () {
+                            if(!deleted) // delete first shot if no hits
+                                $(that.gridObject).children().eq(0).remove(); 
+                        },             
+                        step: function(now,fx){
+                            if ( that.position.l + now >= 1000 //$("#ZombiesSoldier2").position().left
+                                 && that.lane == 193)//getLane($("#ZombiesSoldier2").position().left) ) 
+                               {
+                                    $(fx.elem).stop();
+                                    $(fx.elem).remove();
+                                    deleted=1;
+                                }
+                        }
+                    });
+                // get end of map position
+            } , 1000)}; // shotting speed
+
+        this.stopShooting = function () {
+            clearInterval(this.shootInterval);
+        };
+
+        this.getProjectilePosition = function () {
+            return $(that.gridObject).children().last().position();
+        };
     }
-}
+
 Peashooter.cost = 100;
 
 
@@ -80,16 +138,18 @@ Sun.cost = 50;
 var pShooters = [];
 var suns = [];
 
-var levelOneGrid = [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
+var levelOneGrid = [
+                    1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
                     1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
                     1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
                     1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
                     1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
                     1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
                     1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3
-                 ]
+                   ]
 
 $(function () {
+    // just aadding any thing to make it push
     $(".draggable").draggable({
         revert: false,
         helper: "clone",
@@ -117,7 +177,20 @@ $(function () {
                 changeFunds(-Peashooter.cost);
                 draggedClone.css({"background-image": "url(./images/PShootMove2.gif)","background-color":"transparent"});
                 pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position());
-                pShooters[pShooters.length - 1].Shoot();
+                pShooters[pShooters.length - 1].startShooting();
+            }else if (draggedClone.hasClass('peashooter2') && getFunds() >= Peashooter.cost) {
+                    enoughFunds = true;
+                    changeFunds(-Peashooter.cost);
+                    draggedClone.css({"background-image": "url(./images/Cards/snow-pea.gif)"});
+                    pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position());
+                    pShooters[pShooters.length - 1].startShooting();
+                } else  if (draggedClone.hasClass('peashooter3') && getFunds() >= Peashooter.cost) {
+                        enoughFunds = true;
+                        changeFunds(-Peashooter.cost);
+                        draggedClone.css({"background-image": "url(./images/Cards/pea-shooter2.gif)"});
+                        pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position());
+                        pShooters[pShooters.length - 1].startShooting();
+
             } else if (draggedClone.hasClass('sunflower') && getFunds() >= Sun.cost ) {
                 enoughFunds = true;
                 changeFunds(-Sun.cost);
@@ -128,13 +201,12 @@ $(function () {
                 $(this).append(draggedClone);
                 $(this).droppable("disable");
             }
-
-        }
-    });
+    }
 });
 
-  
-  
+})
+
+
 
 var myElement;
 var timer1;
@@ -142,15 +214,11 @@ var x = 10;
 
 function Shooting(s) {
     s.append("<img class='peashooterActive1' src='./images/PB00.gif' >");
-
-  
 }
 
-  drawGrid(levelOneGrid);
+drawGrid(levelOneGrid);
 
 
-
-//*************************************************************ZOMBIES***************************************************************************//
 
 //crating an array holding the numbers of the zombies created
 //zombies class
@@ -163,8 +231,11 @@ function Zombie(blood, walkSpeed, zombieStyle) {
     this.AllowableZombieTop = ['120px', '197px', '274px', '351px', '428px', '505px', '582px']; //margintop+marginbottom+zombie height
     Zombie.ZombieCount++;
 }
-//var Zombie.ZombiesArr=[];
-Zombie.ZombieCount=1;
+    
+Zombie.ZombiesArr=[];
+Zombie.ZombieClasses=['ZombiesSoldier1'];
+Zombie.ZombieCount=0;
+
 
 //function o return random indexs for AllowableZombieTop Array
 Zombie.prototype.randomZombiePos=function () {
@@ -199,16 +270,5 @@ Zombie.prototype.ZombiesMovement=function (_ZombiesObjID){
 Zombie.prototype.ZombiesRemove=function (_ZombiesObjID){
     $("#"+_ZombiesObjID).remove();
 };
-
-setTimeout(function(){var x1=new Zombie(10,200,'ZombiesSoldier1')
-x1.ZombiesCreation();},300)
-setTimeout(function(){var x1=new Zombie(10,200,'ZombiesSoldier2')
-x1.ZombiesCreation();},300)
-setTimeout(function(){var x1=new Zombie(10,200,'ZombiesSoldier3')
-x1.ZombiesCreation();},300)
-setTimeout(function(){var x1=new Zombie(10,200,'ZombiesSoldier4')
-x1.ZombiesCreation();},300)
-setTimeout(function(){var x1=new Zombie(10,200,'ZombiesSoldier5')
-x1.ZombiesCreation();},300)
-
+ ZombieStart();
 
