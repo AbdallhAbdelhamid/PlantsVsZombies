@@ -95,10 +95,10 @@ $(function () {
         helper: "clone",
         snap: ".grass",
         snapMode: "inner",
-        snapTolerance: 100,
+        snapTolerance: 37.5,
         drag: function (event, ui) {
             if ($(ui.helper).hasClass('peashooter')) {
-                $(ui.helper).css("background-image", "url(./images/PShootMove2.gif)")
+                $(ui.helper).css("background-image", "url(./images/PShootMove2.gif)").css("background-color"," ");
             } else if ($(ui.helper).hasClass('sunflower')) {
 
                 $(ui.helper).css("background-image", "url(./images/SunFlower.gif)")
@@ -131,7 +131,7 @@ $(function () {
 
         }
     });
-//});
+});
 
   
   
@@ -144,7 +144,7 @@ function Shooting(s) {
     s.append("<img class='peashooterActive1' src='./images/PB00.gif' >");
 
   
-
+}
 
   drawGrid(levelOneGrid);
 

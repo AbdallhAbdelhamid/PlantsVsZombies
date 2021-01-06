@@ -6,7 +6,7 @@ div {
 
 #topbar {
     width: 500px;
-    height: 50px;
+    height: 75px;
     border: solid #813a1c 5px;
     background-color: #ec9975;
     z-index: -1;
@@ -21,14 +21,15 @@ div {
 }
 
 .peashooter,.sun,.sunflower {
-    width: 42.5px;
-    height: 42.5px;
-    border: solid green 2.5px;
-    background-size: 42.5px;
-    background-color: green;
+    width: 70px;
+    height: 75px;
+    /* border: solid green 2.5px; */
+    background-size: 100%;
+     /* background-color: green;  */
     display: inline-block;
-    margin: 1.25px;
+    /* margin: 1.25px; */
     z-index: 0;
+   
 }
 
 .zombie1{
@@ -49,6 +50,8 @@ div {
 
 .peashooter{
         background-image: url('./images/PeashooterHD.png');
+         
+
 }
 
 .sun {
@@ -58,7 +61,7 @@ div {
 .sunflower {
     background-image: url('./images/SunflowerHD.png');
     background-color: yellow;
-    border: solid yellow 2.5px;
+    /* border: solid yellow 2.5px; */
 }
 .peashooterActive1 {
     position: absolute;
@@ -100,6 +103,7 @@ div {
 
 .grass {
     background-image: url('./images/a4229a483cf76e0b5458450c2e591ff3.jpg');
+    
 }
 
 .Zombies {
