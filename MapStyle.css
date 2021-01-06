@@ -161,9 +161,7 @@ opacity: 0;
     border: 5px #022072 solid;
     border-radius: 30px;
     background-color: #506BB3;
-
 }
-
 .gamewonClass {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
@@ -172,7 +170,6 @@ opacity: 0;
     width: 95%;
     font-size: 30pt;
 }
-
 .gameoverClass {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
