@@ -11,62 +11,38 @@ div {
     background-color: #ec9975;
     z-index: -1;
 }
+.peashooter,.sun,.sunflower {
+    width: 70px;
+    height: 75px;
+    /* border: solid green 2.5px; */
+    background-size: 100%;
+      background-color: green;  
+    display: inline-block;
+    margin: 1.25px;
+    z-index: 0;
+   
+}
 
+.peashooter{
+    background-image: url('./images/PeashooterHD.png');
+}
+
+
+.sun {
+background-image: url('./images/SunHD.png');
+}
+
+.sunflower {
+background-image: url('./images/SunflowerHD.png');
+background-color: yellow;
+
+}
 #cost {
     width: 500px;
     height: 25px;
     margin-bottom: 5px;
     margin-left: 3.5px;
     z-index: -1;
-}
-
-.peashooter,.sun,.sunflower {
-    width: 70px;
-    height: 75px;
-    /* border: solid green 2.5px; */
-    background-size: 100%;
-     /* background-color: green;  */
-    display: inline-block;
-    /* margin: 1.25px; */
-    z-index: 0;
-   
-}
-
-.zombie1{
-    
-    position: relative; 
-    width: 170px;
-    height: 170px;
-    border: solid green 10px;
-    background-image: url('./images/PeashooterHD.png');
-    background-size: 170px;
-    background-color:green;
-    display: inline-block;
-    margin:5px;
-    z-index: 0;
-}
-
-
-
-.peashooter{
-        background-image: url('./images/PeashooterHD.png');
-         
-
-}
-
-.sun {
-    background-image: url('./images/SunHD.png');
-}
-
-.sunflower {
-    background-image: url('./images/SunflowerHD.png');
-    background-color: yellow;
-    /* border: solid yellow 2.5px; */
-}
-.peashooterActive1 {
-    position: absolute;
-    left: 0px;
-    width: 25px;
 }
 
 .score {
@@ -82,12 +58,10 @@ div {
     border: 0.5px solid rgb(224, 16, 16);
     background-color: #e8ec9c;
 }
-
 #Map {
     width: 1075px;
     display: inline-block;
 }
-
 .house,.grass,.Zombies {
     width: 75px;
     height: 75px;
@@ -109,6 +83,31 @@ div {
 .Zombies {
     background-image: url('./images/93d1632f36cb12816efcc4ef8f7fa608.jpg');
 }
+
+.zombie1{
+    
+    position: relative; 
+    width: 170px;
+    height: 170px;
+    border: solid green 10px;
+    background-image: url('./images/PeashooterHD.png');
+    background-size: 170px;
+    background-color:green;
+    display: inline-block;
+    margin:5px;
+    z-index: 0;
+}
+
+.peashooterActive1 {
+    position: absolute;
+    left: 0px;
+    width: 25px;
+}
+
+
+
+
+
 
 .idh1 {
     font-family: 'Permanent Marker', cursive;
