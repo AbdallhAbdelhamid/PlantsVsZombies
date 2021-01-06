@@ -11,17 +11,20 @@ div {
     background-color: #ec9975;
     z-index: -1;
 }
-.peashooter,.peashooter2,.peashooter3,.sun,.sunflower {
+.peashooter,.sun,.sunflower {
     width: 70px;
     height: 75px;
-    background-size: 100% 100%;
+    /* border: solid green 2.5px; */
+    background-size: 100%;
+      background-color: green;  
     display: inline-block;
     margin: 1.25px;
     z-index: 0;
+   
 }
 
 .peashooter{
-    background-image: url('./images/Cards/peashooter1.jpg');
+    background-image: url('./images/PeashooterHD.png');
 }
 
 
@@ -30,19 +33,19 @@ background-image: url('./images/SunHD.png');
 }
 
 .sunflower {
-background-image: url('./images/Cards/sunflower-button.jpg');
+background-image: url('./images/SunflowerHD.png');
+background-color: yellow;
 
 }
- #cost {
+#cost {
     width: 500px;
     height: 25px;
     margin-bottom: 5px;
     margin-left: 3.5px;
     z-index: -1;
-    /* opacity: 0; */
-} 
+}
 
- .score {
+.score {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
     color: black;
@@ -54,7 +57,7 @@ background-image: url('./images/Cards/sunflower-button.jpg');
     margin: 2.5px;
     border: 0.5px solid rgb(224, 16, 16);
     background-color: #e8ec9c;
-} 
+}
 #Map {
     width: 1075px;
     display: inline-block;
@@ -99,8 +102,12 @@ background-image: url('./images/Cards/sunflower-button.jpg');
     position: absolute;
     left: 0px;
     width: 25px;
-    top: 17px;
 }
+
+
+
+
+
 
 .idh1 {
     font-family: 'Permanent Marker', cursive;
@@ -124,29 +131,21 @@ background-image: url('./images/Cards/sunflower-button.jpg');
     background-image: url('./images/Zombie1/0Zombie1.gif');
 }
 .ZombiesSoldier2 {
-    background-image: url('./images/Zombie3/0Zombie3.gif');
-}
-.ZombiesSoldier3 {
-    background-image: url('./images/Zombie4/0Zombie4.gif');
-}
-.ZombiesSoldier4 {
-    background-image: url('./images/Zombie5/0Zombie5.gif');
-}
-.ZombiesSoldier5 {
     background-image: url('./images/Zombie2/0Zombie2.gif');
 }
+.ZombiesSoldier3 {
+    background-image: url('./images/Zombie3/0Zombie3.gif');
+}
+.ZombiesSoldier4 {
+    background-image: url('./images/Zombie4/0Zombie4.gif');
+}
+.ZombiesSoldier5 {
+    background-image: url('./images/Zombie5/0Zombie5.gif');
+}
 
 
-.peashooter2{
-    background-image: url('./images/Cards/peashooter2.jpg');
-}
-.peashooter3{
-    background-image: url('./images/Cards/peashooter3.jpg');
-}
 
-#peashooterCost,#sunflowerCost,#peashooter2Cost,#peashooter3Cost{
-opacity: 0;
-}
+
 
 
 /*/////////////////
