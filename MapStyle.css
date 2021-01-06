@@ -40,6 +40,23 @@ div {
     z-index: 0;
 }
 
+/* */
+.zombie1{
+    
+    position: relative; 
+    width: 170px;
+    height: 170px;
+    border: solid green 10px;
+    background-image: url('./images/PeashooterHD.png');
+    background-size: 170px;
+    background-color:green;
+    display: inline-block;
+    margin:5px;
+    z-index: 0;
+}
+
+
+
 .sun {
     width: 170px;
     height: 170px;
@@ -114,6 +131,8 @@ margin: 10px;
 /*    transform-origin: 200%;*/
     z-index: -1;
 }
+
+
 .grass {
     width: 200px;
     height: 200px;
@@ -125,6 +144,8 @@ margin: 10px;
 /*    transform-origin: 200%;*/
     z-index: -1;
 }
+
+
 .Zombies {
     width: 350px;
     height: 200px;
