@@ -11,65 +11,38 @@ div {
     background-color: #ec9975;
     z-index: -1;
 }
+.peashooter,.peashooter2,.peashooter3,.sun,.sunflower {
+    width: 70px;
+    height: 75px;
+    background-size: 100% 100%;
+    display: inline-block;
+    margin: 1.25px;
+    z-index: 0;
+}
 
-#cost {
+.peashooter{
+    background-image: url('./images/Cards/peashooter1.jpg');
+}
+
+
+.sun {
+background-image: url('./images/SunHD.png');
+}
+
+.sunflower {
+background-image: url('./images/Cards/sunflower-button.jpg');
+
+}
+ #cost {
     width: 500px;
     height: 25px;
     margin-bottom: 5px;
     margin-left: 3.5px;
     z-index: -1;
-}
+    /* opacity: 0; */
+} 
 
-.peashooter,.sun,.sunflower {
-    width: 70px;
-    height: 75px;
-    /* border: solid green 2.5px; */
-    background-size: 100%;
-     /* background-color: green;  */
-    display: inline-block;
-    /* margin: 1.25px; */
-    z-index: 0;
-   
-}
-
-.zombie1{
-    
-    position: relative; 
-    width: 170px;
-    height: 170px;
-    border: solid green 10px;
-    background-image: url('./images/PeashooterHD.png');
-    background-size: 170px;
-    background-color:green;
-    display: inline-block;
-    margin:5px;
-    z-index: 0;
-}
-
-
-
-.peashooter{
-        background-image: url('./images/PeashooterHD.png');
-         
-
-}
-
-.sun {
-    background-image: url('./images/SunHD.png');
-}
-
-.sunflower {
-    background-image: url('./images/SunflowerHD.png');
-    background-color: yellow;
-    /* border: solid yellow 2.5px; */
-}
-.peashooterActive1 {
-    position: absolute;
-    left: 0px;
-    width: 25px;
-}
-
-.score {
+ .score {
     font-family: 'Permanent Marker', cursive;
     text-align: center;
     color: black;
@@ -81,13 +54,11 @@ div {
     margin: 2.5px;
     border: 0.5px solid rgb(224, 16, 16);
     background-color: #e8ec9c;
-}
-
+} 
 #Map {
     width: 1075px;
     display: inline-block;
 }
-
 .house,.grass,.Zombies {
     width: 75px;
     height: 75px;
@@ -108,6 +79,27 @@ div {
 
 .Zombies {
     background-image: url('./images/93d1632f36cb12816efcc4ef8f7fa608.jpg');
+}
+
+.zombie1{
+    
+    position: relative; 
+    width: 170px;
+    height: 170px;
+    border: solid green 10px;
+    background-image: url('./images/PeashooterHD.png');
+    background-size: 170px;
+    background-color:green;
+    display: inline-block;
+    margin:5px;
+    z-index: 0;
+}
+
+.peashooterActive1 {
+    position: absolute;
+    left: 0px;
+    width: 25px;
+    top: 17px;
 }
 
 .idh1 {
@@ -132,21 +124,29 @@ div {
     background-image: url('./images/Zombie1/0Zombie1.gif');
 }
 .ZombiesSoldier2 {
-    background-image: url('./images/Zombie2/0Zombie2.gif');
-}
-.ZombiesSoldier3 {
     background-image: url('./images/Zombie3/0Zombie3.gif');
 }
-.ZombiesSoldier4 {
+.ZombiesSoldier3 {
     background-image: url('./images/Zombie4/0Zombie4.gif');
 }
-.ZombiesSoldier5 {
+.ZombiesSoldier4 {
     background-image: url('./images/Zombie5/0Zombie5.gif');
+}
+.ZombiesSoldier5 {
+    background-image: url('./images/Zombie2/0Zombie2.gif');
 }
 
 
+.peashooter2{
+    background-image: url('./images/Cards/peashooter2.jpg');
+}
+.peashooter3{
+    background-image: url('./images/Cards/peashooter3.jpg');
+}
 
-
+#peashooterCost,#sunflowerCost,#peashooter2Cost,#peashooter3Cost{
+opacity: 0;
+}
 
 
 /*/////////////////
