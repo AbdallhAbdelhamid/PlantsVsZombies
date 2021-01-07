@@ -78,7 +78,7 @@ function Peashooter(peashotterDiv, positionIn) {
     this.shootInterval;
     this.attacking = false;
     this.startShooting = function (zombie) {
-        if (this.attacking) return;
+        if (this.attacking) return;//************??
         this.attacking = true;
         var that = this;
         var count = 0;
@@ -112,11 +112,16 @@ function Peashooter(peashotterDiv, positionIn) {
                                 $(that.gridObject).children().stop(true).remove();
                                 that.stopShooting();
                                 const index = Zombie.ZombiesArr.indexOf(zombie);
+                                
                                 if (index > -1) {
-                                    Zombie.ZombiesArr.splice(index, 1);
-                                }
-                                $("#" + zombie).remove();
+                                    //****edited
+                                    //Zombie.ZombiesArr.splice(index, 1);
+                                    clearInterval(objectsZombies[index].ZombieTimer);
+                                    objectsZombies[index].ZombiesRemove(zombie); 
 
+                                }
+                                //$("#" + zombie).remove();
+                                //****end edit
                             }
                         }
                     }
@@ -272,145 +277,140 @@ drawGrid(levelOneGrid);
 function Zombie(blood, walkSpeed, zombieStyle) {
     this.blood = blood;
     this.walkSpeed = walkSpeed;
-    this.zombieStyle = zombieStyle;
+    this.zombieStyle=zombieStyle;
     this.ZombieTimer;
-    this.ZombieLeftMovement = "-=10";
+    this.ZombieLeftMovement="-=10";
     //Array of Zombies allowable top positions
     this.AllowableZombieTop = ['120px', '197px', '274px', '351px', '428px', '505px', '582px']; //margintop+marginbottom+zombie height
     Zombie.ZombieCount++;
 }
-Zombie.ZombiesArr = [];
-Zombie.ZombieClasses = ['ZombiesSoldier1'];
-Zombie.ZombieCount = 0;
+Zombie.ZombiesArr=[];//stor zombies ids only
+Zombie.ZombieClasses=['ZombiesSoldier1'];
+Zombie.ZombieCount=0;
 
 
 //function o return random indexs for AllowableZombieTop Array
-Zombie.prototype.randomZombiePos = function () {
-    return this.AllowableZombieTop[Math.floor(Math.random() * this.AllowableZombieTop.length)];
+Zombie.prototype.randomZombiePos=function () {
+   return this.AllowableZombieTop[Math.floor(Math.random() * this.AllowableZombieTop.length)];
 };
 //zombies creation function
-Zombie.prototype.ZombiesCreation = function () {
+Zombie.prototype.ZombiesCreation=function (){
     var ZombiesObj = document.createElement("div");
-    ZombiesObj.style.left = "1000px"; //#Map width-zombie width pic
+    ZombiesObj.style.left = "1000px";//#Map width-zombie width pic
     ZombiesObj.style.top = this.randomZombiePos();
     ZombiesObj.classList.add(this.zombieStyle);
-    ZombiesObj.setAttribute("id", "ZombiesSoldier" + Zombie.ZombieCount);
+    ZombiesObj.setAttribute("id", "ZombiesSoldier"+Zombie.ZombieCount);
     document.getElementById("Map").appendChild(ZombiesObj);
     Zombie.ZombiesArr.push(ZombiesObj.id);
     this.ZombiesMovement(ZombiesObj.id);
-}
+};
 //-60
-var HouseLoss = 0; //zombie reached our home aand we lost the game -60
+var HouseLoss=0;//zombie reached our home aand we lost the game -60
 
 //creating a functiom to move the zombie till a condition is met
-Zombie.prototype.ZombiesMovement = function (_ZombiesObjID) {
+Zombie.prototype.ZombiesMovement=function (_ZombiesObjID){
     //timer for zombie movement;
-    var that = this;
-    that.ZombieTimer = setInterval(function () {
-        $("#" + _ZombiesObjID).css("left", that.ZombieLeftMovement);
-        if (this.blood == 0) {
+    var that=this;
+    that.ZombieTimer=setInterval(function(){
+        $("#"+_ZombiesObjID).css("left", that.ZombieLeftMovement);
+        if(that.blood==0)
+        {
             clearInterval(that.ZombieTimer);
             that.ZombiesRemove(_ZombiesObjID);
         }
-        if ($("#" + _ZombiesObjID).position().left <= HouseLoss) {
-            // we  need to open the door and call game over function
-            clearInterval(that.ZombieTimer);
+        if($("#"+_ZombiesObjID).position().left<=HouseLoss){
+        // we  need to open the door and call game over function
+            clearInterval(that.ZombieTimer);  
+            that.ZombiesRemove(_ZombiesObjID);
         }
-
-    }, this.walkSpeed);
+    
+    },that.walkSpeed);
 };
 //creating a function to remove the zombie if a condition is met
-Zombie.prototype.ZombiesRemove = function (_ZombiesObjID) {
-    var bg_img = $("#" + _ZombiesObjID).css("background-image");
-    console.log(bg_img);
-    if (bg_img == 'url("http://127.0.0.1:5500/PlantsVsZombies/images/Zombie1/0Zombie1.gif")')
-        $("#" + _ZombiesObjID).css({
-            "background-image": "url(./images/Zombie/ZombieDie.gif)"
-        });
+Zombie.prototype.ZombiesRemove=function (_ZombiesObjID){
+    var bg_img =$("#"+_ZombiesObjID).css("background-image");
+   //console.log(bg_img);
+    if(bg_img.includes("Zombie1/0Zombie1.gif"))
+    $("#"+_ZombiesObjID).css({"background-image": "url(./images/Zombie/ZombieDie.gif)"});
 
-    else if (bg_img == 'url("http://127.0.0.1:5500/PlantsVsZombies/images/Zombie2/0Zombie2.gif")')
-        $("#" + _ZombiesObjID).css({
-            "background-image": "url(./images/Zombie2/ZombieHead.gif)"
-        });
+    else if(bg_img.includes("Zombie2/0Zombie2.gif"))
+    $("#"+_ZombiesObjID).css({"background-image": "url(./images/Zombie2/ZombieHead.gif)"});
 
-    else if (bg_img == 'url("http://127.0.0.1:5500/PlantsVsZombies/images/Zombie3/0Zombie3.gif")')
-        $("#" + _ZombiesObjID).css({
-            "background-image": "url(./images/Zombie3/ZombieDie.gif)"
-        });
+    else if(bg_img.includes("Zombie3/0Zombie3.gif"))
+    $("#"+_ZombiesObjID).css({"background-image": "url(./images/Zombie3/ZombieDie.gif)"});
 
-    else if (bg_img == 'url("http://127.0.0.1:5500/PlantsVsZombies/images/Zombie4/0Zombie4.gif")')
-        $("#" + _ZombiesObjID).css({
-            "background-image": "url(./images/Zombie4/FlagZombieLostHead.gif)"
-        });
+    else if(bg_img.includes("Zombie4/0Zombie4.gif"))
+    $("#"+_ZombiesObjID).css({"background-image": "url(./images/Zombie4/FlagZombieLostHead.gif)"});
 
-    else if (bg_img == 'url("http://127.0.0.1:5500/PlantsVsZombies/images/Zombie5/0Zombie5.gif")')
-        $("#" + _ZombiesObjID).css({
-            "background-image": "url(./images/Zombie2/ZombieHead.gif)"
-        });
+    else if(bg_img.includes("Zombie5/0Zombie5.gif"))
+    $("#"+_ZombiesObjID).css({"background-image": "url(./images/Zombie2/ZombieHead.gif)"});
 
-    setTimeout(function () {
-        $("#" + _ZombiesObjID).remove();
-        var zombieIdIndex = Zombie.ZombiesArr.indexOf(_ZombiesObjID)
-        Zombie.ZombiesArr.splice(zombieIdIndex, "1");
-    }, 2000)
-
+    setTimeout(function(){
+        $("#"+_ZombiesObjID).remove();
+        var zombieIdIndex=Zombie.ZombiesArr.indexOf(_ZombiesObjID)
+        Zombie.ZombiesArr.splice(zombieIdIndex,"1");
+        objectsZombies.splice(zombieIdIndex,"1");
+    },2000)
+  
 };
 
 
 //function to return random Zombies solider Class 
 function randomZombiesoliderClass() {
     return Zombie.ZombieClasses[Math.floor(Math.random() * Zombie.ZombieClasses.length)];
-};
-var ZombiesClassNO = 2;
-//function to push new zombie Solider class  after period of time 
-function PushZombiesoliderClass() {
-    Zombie.ZombieClasses.push('ZombiesSoldier' + ZombiesClassNO)
+ };
+ var ZombiesClassNO=2;
+ //function to push new zombie Solider class  after period of time 
+function PushZombiesoliderClass () {
+    Zombie.ZombieClasses.push('ZombiesSoldier'+ZombiesClassNO)
     ZombiesClassNO++;
-};
+ };
 
-//function to return the health of the created zombie
-function ZombieObjHealth(ZombieObjClass) {
-    if (ZombieObjClass == 'ZombiesSoldier1') return 10;
-    else if (ZombieObjClass == 'ZombiesSoldier2') return 15;
-    else if (ZombieObjClass == 'ZombiesSoldier3') return 20;
-    else if (ZombieObjClass == 'ZombiesSoldier4') return 25;
-    else if (ZombieObjClass == 'ZombiesSoldier5') return 30;
-};
-//function to return the speed of the created zombie
-function ZombieObjSpeed(ZombieObjClass) {
-    if (ZombieObjClass == 'ZombiesSoldier1') return 300;
-    else if (ZombieObjClass == 'ZombiesSoldier2') return 350;
-    else if (ZombieObjClass == 'ZombiesSoldier3') return 400;
-    else if (ZombieObjClass == 'ZombiesSoldier4') return 500;
-    else if (ZombieObjClass == 'ZombiesSoldier5') return 550;
-};
+  //function to return the health of the created zombie
+function ZombieObjHealth (ZombieObjClass) {
+    if(ZombieObjClass=='ZombiesSoldier1')return 10;
+    else if(ZombieObjClass=='ZombiesSoldier2')return 15;
+    else if(ZombieObjClass=='ZombiesSoldier3')return 20;
+    else if(ZombieObjClass=='ZombiesSoldier4')return 25;
+    else if(ZombieObjClass=='ZombiesSoldier5')return 30;
+ };
+   //function to return the speed of the created zombie
+function ZombieObjSpeed (ZombieObjClass) {
+    if(ZombieObjClass=='ZombiesSoldier1')return 300;
+    else if(ZombieObjClass=='ZombiesSoldier2')return 350;
+    else if(ZombieObjClass=='ZombiesSoldier3')return 400;
+    else if(ZombieObjClass=='ZombiesSoldier4')return 500;
+    else if(ZombieObjClass=='ZombiesSoldier5')return 550;
+ };
 
 
 //////////////start the game for zombies ////////////////////////////////////////
 
-var Timer = 0; //Timer To  push new Zombie Class
+ var Timer=0;//Timer To  push new Zombie Class
+ 
+ var Time={
+    twentyseconds:4,
+    fortySeconds:8,
+    sixtySeconds:12,
+    eightySeconds:16
+ };
+var objectsZombies=[];
 
-var Time = {
-    twentyseconds: 20,
-    fortySeconds: 40,
-    sixtySeconds: 60,
-    eightySeconds: 80
-
-}
-
-function ZombieStart() {
-    var ZombieObjClass = randomZombiesoliderClass();
-    var ZombieHealth = ZombieObjHealth(ZombieObjClass);
-    var ZombieSpeed = ZombieObjSpeed(ZombieObjClass);
-    var ZombiesTimer = 5000;
-    if (Timer == Time.eightySeconds) ZombiesTimer = 3000;
-    var ZombieObj = new Zombie(ZombieHealth, ZombieSpeed, ZombieObjClass)
-    ZombieObj.ZombiesCreation();
-    Timer++
-    if (Timer == Time.twentyseconds || Timer == Time.fortySeconds || Timer == Time.sixtySeconds || Timer == Time.eightySeconds) {
-        PushZombiesoliderClass();
-    };
+function ZombieStart(){
+var ZombieObjClass=randomZombiesoliderClass();
+var ZombieHealth=ZombieObjHealth (ZombieObjClass);
+var ZombieSpeed=ZombieObjSpeed (ZombieObjClass);
+var ZombiesTimer=5000;
+if(Timer==Time.eightySeconds) ZombiesTimer=3000;
+var ZombieObj = new Zombie(ZombieHealth, ZombieSpeed, ZombieObjClass);
+        ZombieObj.ZombiesCreation();
+        Timer++
+        if(Timer==Time.twentyseconds||Timer==Time.fortySeconds||Timer==Time.sixtySeconds||Timer==Time.eightySeconds)
+        {
+            PushZombiesoliderClass ();
+        };
+    objectsZombies.push(ZombieObj);//push object in the array
     setTimeout(ZombieStart, ZombiesTimer)
 }
 
-ZombieStart();
+ ZombieStart();
