@@ -57,9 +57,10 @@ function getLane(position) {
     else return lane.LANE7
 }
 
-function Peashooter(peashotterDiv, positionIn, shottingSpeed) {
+function Peashooter(peashotterDiv, positionIn, shottingSpeed,grassIn) {
     this.gridObject = peashotterDiv;
     this.lane = getLane(positionIn.top);
+    this.grass = grassIn;
     this.position = {
         t: positionIn.top
         , l: positionIn.left
@@ -199,7 +200,7 @@ $(function () {
                     "background-image": "url(./images/PShootMove2.gif)"
                     , "background-color": "transparent"
                 });
-                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.slow);
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.slow,$(this));
                 // pShooters[pShooters.length - 1].startShooting();
             }
             else if (draggedClone.hasClass('peashooter2') && getFunds() >= CardCost.peashooter2) {
@@ -208,7 +209,7 @@ $(function () {
                 draggedClone.css({
                     "background-image": "url(./images/Cards/snow-pea.gif)"
                 });
-                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.average);
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.average,$(this));
                 //  pShooters[pShooters.length - 1].startShooting();
             }
             else if (draggedClone.hasClass('peashooter3') && getFunds() >= CardCost.peashooter3) {
@@ -217,7 +218,7 @@ $(function () {
                 draggedClone.css({
                     "background-image": "url(./images/Cards/pea-shooter2.gif)"
                 });
-                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.fast);
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.fast,$(this));
                 // pShooters[pShooters.length - 1].startShooting();
             }
             else if (draggedClone.hasClass('sunflower') && getFunds() >= CardCost.sun) {
@@ -239,12 +240,19 @@ var int1 = setInterval(function () {
         pShooters.forEach(function (pShooter) {
             if (pShooter.lane == zombieLane) pShooter.startShooting(zombie);
             if (pShooter.position.l + 50 > zombieLeft && pShooter.lane == zombieLane) pShooter.deleteObject();
+            pShooter.grass.droppable("enable");
         });
         suns.forEach(function (sun) {
             if (sun.position.l + 50 > zombieLeft && sun.lane == zombieLane) sun.deleteObject();
         });
     })
 }, 200);
+
+
+
+
+
+
 var myElement;
 var timer1;
 var x = 10;
