@@ -223,6 +223,37 @@ $(function () {
             }
             else if (draggedClone.hasClass('sunflower') && getFunds() >= CardCost.sun) {
                 enoughFunds = true;
+/*
+                enoughFunds = true;
+                changeFunds(-CardCost.peashooter1);
+                draggedClone.css({
+                    "background-image": "url(./images/PShootMove2.gif)"
+                    , "background-color": "transparent"
+                });
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.slow,$(this));
+                // pShooters[pShooters.length - 1].startShooting();
+            }
+            else if (draggedClone.hasClass('peashooter2') && getFunds() >= CardCost.peashooter2) {
+                enoughFunds = true;
+                changeFunds(-CardCost.peashooter2);
+                draggedClone.css({
+                    "background-image": "url(./images/Cards/snow-pea.gif)"
+                });
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.average,$(this));
+                //  pShooters[pShooters.length - 1].startShooting();
+            }
+            else if (draggedClone.hasClass('peashooter3') && getFunds() >= CardCost.peashooter3) {
+                enoughFunds = true;
+                changeFunds(-CardCost.peashooter3);
+                draggedClone.css({
+                    "background-image": "url(./images/Cards/pea-shooter2.gif)"
+                });
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.fast,$(this));
+                // pShooters[pShooters.length - 1].startShooting();
+            }
+            else if (draggedClone.hasClass('sunflower') && getFunds() >= CardCost.sun) {
+                enoughFunds = true;
+*/
                 changeFunds(-CardCost.sun);
                 suns[suns.length] = new Sun(draggedClone, $(this).position());
             }
@@ -326,6 +357,7 @@ Zombie.prototype.ZombiesRemove = function (_ZombiesObjID) {
     });
     else if (bg_img.includes("Zombie3/0Zombie3.gif")) $("#" + _ZombiesObjID).css({
         "background-image": "url(./images/Zombie2/ZombieHead.gif)"
+
     });
     else if (bg_img.includes("Zombie4/0Zombie4.gif")) $("#" + _ZombiesObjID).css({
         "background-image": "url(./images/Zombie4/FlagZombieLostHead.gif)"
@@ -357,11 +389,14 @@ function ZombieObjHealth(ZombieObjClass) {
     else if (ZombieObjClass == 'ZombiesSoldier3') return 12;
     else if (ZombieObjClass == 'ZombiesSoldier4') return 15;
     else if (ZombieObjClass == 'ZombiesSoldier5') return 20;
+
 };
 //function to return the speed of the created zombie
 function ZombieObjSpeed(ZombieObjClass) {
     if (ZombieObjClass == 'ZombiesSoldier1') return 300;
+
     else if (ZombieObjClass == 'ZombiesSoldier2') return 175;
+
     else if (ZombieObjClass == 'ZombiesSoldier3') return 400;
     else if (ZombieObjClass == 'ZombiesSoldier4') return 500;
     else if (ZombieObjClass == 'ZombiesSoldier5') return 550;
@@ -406,5 +441,6 @@ function ZombieStart() {
     }
 
 }
+
 
 ZombieStart();
