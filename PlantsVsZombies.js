@@ -223,6 +223,37 @@ $(function () {
             }
             else if (draggedClone.hasClass('sunflower') && getFunds() >= CardCost.sun) {
                 enoughFunds = true;
+/*
+                enoughFunds = true;
+                changeFunds(-CardCost.peashooter1);
+                draggedClone.css({
+                    "background-image": "url(./images/PShootMove2.gif)"
+                    , "background-color": "transparent"
+                });
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.slow,$(this));
+                // pShooters[pShooters.length - 1].startShooting();
+            }
+            else if (draggedClone.hasClass('peashooter2') && getFunds() >= CardCost.peashooter2) {
+                enoughFunds = true;
+                changeFunds(-CardCost.peashooter2);
+                draggedClone.css({
+                    "background-image": "url(./images/Cards/snow-pea.gif)"
+                });
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.average,$(this));
+                //  pShooters[pShooters.length - 1].startShooting();
+            }
+            else if (draggedClone.hasClass('peashooter3') && getFunds() >= CardCost.peashooter3) {
+                enoughFunds = true;
+                changeFunds(-CardCost.peashooter3);
+                draggedClone.css({
+                    "background-image": "url(./images/Cards/pea-shooter2.gif)"
+                });
+                pShooters[pShooters.length] = new Peashooter(draggedClone, $(this).position(), ShootingSpeed.fast,$(this));
+                // pShooters[pShooters.length - 1].startShooting();
+            }
+            else if (draggedClone.hasClass('sunflower') && getFunds() >= CardCost.sun) {
+                enoughFunds = true;
+*/
                 changeFunds(-CardCost.sun);
                 suns[suns.length] = new Sun(draggedClone, $(this).position());
             }
@@ -273,7 +304,7 @@ function Zombie(blood, walkSpeed, zombieStyle, bountyIn) {
     this.ZombieKillBounty = bountyIn;
     //Array of Zombies allowable top positions
     this.AllowableZombieTop = ['120px', '197px', '274px', '351px', '428px', '505px', '582px']; //margintop+marginbottom+zombie height
-    Zombie.ZombieCount++;
+//    Zombie.ZombieCount++;
 }
 Zombie.ZombiesArr = []; //stor zombies ids only
 Zombie.ZombieClasses = ['ZombiesSoldier1'];
@@ -325,7 +356,8 @@ Zombie.prototype.ZombiesRemove = function (_ZombiesObjID) {
         "background-image": "url(./images/Zombie2/ZombieHead.gif)"
     });
     else if (bg_img.includes("Zombie3/0Zombie3.gif")) $("#" + _ZombiesObjID).css({
-        "background-image": "url(./images/Zombie3/ZombieDie.gif)"
+        "background-image": "url(./images/Zombie2/ZombieHead.gif)"
+
     });
     else if (bg_img.includes("Zombie4/0Zombie4.gif")) $("#" + _ZombiesObjID).css({
         "background-image": "url(./images/Zombie4/FlagZombieLostHead.gif)"
@@ -352,16 +384,19 @@ function PushZombiesoliderClass() {
 };
 //function to return the health of the created zombie
 function ZombieObjHealth(ZombieObjClass) {
-    if (ZombieObjClass == 'ZombiesSoldier1') return 10;
-    else if (ZombieObjClass == 'ZombiesSoldier2') return 15;
-    else if (ZombieObjClass == 'ZombiesSoldier3') return 20;
-    else if (ZombieObjClass == 'ZombiesSoldier4') return 25;
-    else if (ZombieObjClass == 'ZombiesSoldier5') return 30;
+    if (ZombieObjClass == 'ZombiesSoldier1') return 7;
+    else if (ZombieObjClass == 'ZombiesSoldier2') return 5;
+    else if (ZombieObjClass == 'ZombiesSoldier3') return 12;
+    else if (ZombieObjClass == 'ZombiesSoldier4') return 15;
+    else if (ZombieObjClass == 'ZombiesSoldier5') return 20;
+
 };
 //function to return the speed of the created zombie
 function ZombieObjSpeed(ZombieObjClass) {
     if (ZombieObjClass == 'ZombiesSoldier1') return 300;
-    else if (ZombieObjClass == 'ZombiesSoldier2') return 350;
+
+    else if (ZombieObjClass == 'ZombiesSoldier2') return 175;
+
     else if (ZombieObjClass == 'ZombiesSoldier3') return 400;
     else if (ZombieObjClass == 'ZombiesSoldier4') return 500;
     else if (ZombieObjClass == 'ZombiesSoldier5') return 550;
@@ -397,7 +432,15 @@ function ZombieStart() {
     if (Timer == Time.twentyseconds || Timer == Time.fortySeconds || Timer == Time.sixtySeconds || Timer == Time.eightySeconds) {
         PushZombiesoliderClass();
     };
+    Zombie.ZombieCount++;
+    var zombieNumber=1000-Zombie.ZombieCount;
+    document.getElementById("ZombieCount").innerHTML='Zombie = '+zombieNumber;
     objectsZombies.push(ZombieObj); //push object in the array
-    setTimeout(ZombieStart, ZombiesTimer)
+    if(zombieNumber>0){
+        setTimeout(ZombieStart, ZombiesTimer);
+    }
+
 }
+
+
 ZombieStart();
