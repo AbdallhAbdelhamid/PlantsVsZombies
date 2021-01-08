@@ -270,8 +270,11 @@ var int1 = setInterval(function () {
         var zombieLeft = $("#" + zombie).position().left;
         pShooters.forEach(function (pShooter) {
             if (pShooter.lane == zombieLane) pShooter.startShooting(zombie);
-            if (pShooter.position.l + 50 > zombieLeft && pShooter.lane == zombieLane) pShooter.deleteObject();
+            if (pShooter.position.l + 50 > zombieLeft && pShooter.lane == zombieLane)
+            {
+                pShooter.deleteObject();
             pShooter.grass.droppable("enable");
+            }
         });
         suns.forEach(function (sun) {
             if (sun.position.l + 50 > zombieLeft && sun.lane == zombieLane) sun.deleteObject();
